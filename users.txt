@@ -1,0 +1,4 @@
+admin  admin123  ADMIN
+alice  alice123  USER
+bob    bob123    USER
+guest  guest123  GUEST
