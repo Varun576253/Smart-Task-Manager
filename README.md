@@ -1,83 +1,67 @@
-Smart Task Manager
+# Smart Task Manager
 
-Operating Systems Lab Mini Project
+## Overview
 
-A multi-threaded, priority-based job scheduling system built in C that simulates a real-world job scheduler using multithreading, process management, IPC, synchronization, networking, and persistent storage.
+Smart Task Manager is a Linux-based, multi-threaded job scheduling system developed as part of an **Operating Systems course project**. It simulates a real-world job scheduler where multiple clients can connect concurrently, authenticate, and submit background jobs. The system schedules jobs based on priority and demonstrates key operating system concepts, including multithreading, process management, inter-process communication, synchronization, networking, and persistent storage.
 
-Overview
+---
 
-Smart Task Manager is a Linux-based client-server application where multiple users can connect simultaneously, authenticate, and submit background jobs.
+## Features
 
-Each client is handled by a dedicated POSIX thread, while a scheduler thread continuously dispatches jobs based on priority. Jobs execute as isolated worker processes using fork(), demonstrating concurrent systems programming concepts.
+* Multi-threaded TCP server using POSIX Threads
+* Priority-based job scheduling (High → Medium → Low)
+* FCFS scheduling within the same priority level
+* Concurrent client handling
+* Worker process execution using `fork()`
+* IPC using unnamed pipes
+* Mutex and semaphore synchronization
+* TCP socket communication
+* Persistent job and activity logging
+* Role-based user authentication
 
-How It Works
-Client Workflow
-User logs into the server.
-Submits a job with:
-Job Type
-Priority
-Delay
-Job enters the shared priority queue.
-Scheduler selects the highest-priority job.
-Worker process executes the job.
-Status and logs are updated automatically.
-System Architecture
-Clients
-    │
-TCP Server
-    ├── Client Threads
-    ├── Scheduler Thread
-    │
-Priority Job Queue
-    │
-fork() Worker Processes
-    │
-jobs.txt • logs.txt
-Features
-Multi-threaded TCP server using POSIX Threads
-One dedicated thread per client
-Separate scheduler thread
-Priority scheduling (High → Medium → Low)
-FCFS within equal priorities
-Worker processes using fork()
-IPC using unnamed pipes
-Mutex-protected shared job queue
-Semaphore-controlled worker pool
-TCP socket communication
-Persistent storage with fcntl locking
-Role-based authentication
-Activity logging
-Automatic recovery after server restart
-OS Concepts Demonstrated
-POSIX Threads (pthreads)
-Process Management (fork, waitpid)
-Inter-Process Communication (Pipes)
-Thread Synchronization (Mutexes & Semaphores)
-TCP Socket Programming
-Signal Handling
-File Locking (fcntl)
-Priority Scheduling
-Tech Stack
-Layer	Technology
-Language	C (C11)
-Platform	Linux
-Networking	TCP Sockets
-Concurrency	POSIX Threads
-IPC	Pipes
-Synchronization	Mutexes & Semaphores
-Build	Make
-Project Structure
+---
+
+## Tech Stack
+
+### Language
+
+* C (C11)
+
+### Platform
+
+* Linux
+
+### Technologies
+
+* POSIX Threads (pthreads)
+* TCP Sockets
+* Pipes
+* Mutexes & Semaphores
+* Make
+
+---
+
+## Project Structure
+
+```text
 smart_task_manager/
+│
 ├── server.c
+├── client.c
 ├── scheduler.c
 ├── storage.c
-├── client.c
 ├── common.h
 ├── Makefile
 ├── users.txt
 ├── jobs.txt
 └── logs.txt
-Build & Run
+```
+
+---
+
+## Build & Run
+
+```bash
 make
 
 # Terminal 1
@@ -85,3 +69,24 @@ make
 
 # Terminal 2
 ./client
+```
+
+---
+
+## Learning Outcomes
+
+This project demonstrates practical implementation of:
+
+* Process Management
+* Multithreading
+* Inter-Process Communication (IPC)
+* Thread Synchronization
+* TCP Socket Programming
+* Priority Scheduling
+* File Locking and Persistent Storage
+
+---
+
+## License
+
+This project was developed as part of an **Operating Systems course project** for educational purposes.
